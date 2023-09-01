@@ -9,7 +9,21 @@ return {
   },
   {
     "stevearc/overseer.nvim",
-    lazy = false,
+    cmd = {
+      "OverseerOpen",
+      "OverseerClose",
+      "OverseerToggle",
+      "OverseerSaveBundle",
+      "OverseerLoadBundle",
+      "OverseerDeleteBundle",
+      "OverseerRunCmd",
+      "OverseerRun",
+      "OverseerInfo",
+      "OverseerBuild",
+      "OverseerQuickAction",
+      "OverseerTaskAction",
+      "OverseerClearCache",
+    },
     keys = {
       { "<leader>oo", "<cmd>OverseerToggle<cr>", desc = "Toggle the overseer window" },
       { "<leader>or", "<cmd>OverseerRun<cr>", desc = "Run a task from a template" },

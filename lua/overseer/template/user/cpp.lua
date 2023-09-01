@@ -29,7 +29,7 @@ local tmpl = {
 }
 
 return {
-  generator = function(opts, cb)
+  generator = function(_, cb)
     cb({
       overseer.wrap_template(tmpl, { name = "gcc build and run", condition = { filetype = "c" } }, { cmd = "gcc" }),
       overseer.wrap_template(tmpl, { name = "g++ build and run", condition = { filetype = "cpp" } }, { cmd = "g++" }),
