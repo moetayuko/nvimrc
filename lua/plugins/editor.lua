@@ -3,6 +3,11 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     dependencies = {
       "s1n7ax/nvim-window-picker",
+      opts = {
+        filter_rules = {
+          bo = { filetype = { "NvimTree", "neo-tree", "notify", "noice" } },
+        },
+      },
     },
     opts = {
       filesystem = {
@@ -59,6 +64,34 @@ return {
         },
       },
     },
+    config = function(_, opts)
+      -- NOTE: sync with upstream
+      require("neo-tree").setup(opts)
+      vim.api.nvim_create_autocmd("TermClose", {
+        pattern = "*lazygit",
+        callback = function()
+          if package.loaded["neo-tree.sources.git_status"] then
+            require("neo-tree.sources.git_status").refresh()
+          end
+        end,
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "neo-tree" },
+        callback = function()
+          local buf = vim.api.nvim_get_current_buf()
+          vim.api.nvim_create_autocmd("BufEnter", {
+            buffer = buf,
+            callback = function()
+              if package.loaded["ufo"] then
+                require("ufo").detach()
+                return true
+              end
+            end,
+          })
+        end,
+      })
+    end,
   },
   {
     "telescope.nvim",
@@ -176,73 +209,6 @@ return {
     opts = {
       manual_mode = true,
       scope_chdir = "tab",
-    },
-  },
-  {
-    "kevinhwang91/nvim-ufo",
-    dependencies = {
-      "kevinhwang91/promise-async",
-      {
-        -- nvim lsp as LSP client
-        -- Tell the server the capability of foldingRange,
-        -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
-        "neovim/nvim-lspconfig",
-        opts = {
-          capabilities = {
-            textDocument = {
-              foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
-              },
-            },
-          },
-        },
-      },
-    },
-    event = "BufReadPost",
-    opts = {
-      provider_selector = function(bufnr, _, _)
-        local function handleFallbackException(err, providerName)
-          if type(err) == "string" and err:match("UfoFallbackException") then
-            return require("ufo").getFolds(bufnr, providerName)
-          else
-            return require("promise").reject(err)
-          end
-        end
-
-        return require("ufo")
-          .getFolds(bufnr, "lsp")
-          :catch(function(err)
-            return handleFallbackException(err, "treesitter")
-          end)
-          :catch(function(err)
-            return handleFallbackException(err, "indent")
-          end)
-      end,
-    },
-
-    config = function(opts)
-      vim.o.foldcolumn = "1" -- '0' is not bad
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-      vim.o.foldlevelstart = 99
-      vim.o.foldenable = true
-      vim.keymap.set("n", "zM", function() end)
-      require("ufo").setup(opts)
-    end,
-    -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-    map = {
-      {
-        "zR",
-        function()
-          require("ufo").openAllFolds()
-        end,
-      },
-      {
-        "zM",
-        function()
-          require("ufo").closeAllFolds()
-        end,
-      },
     },
   },
 }
