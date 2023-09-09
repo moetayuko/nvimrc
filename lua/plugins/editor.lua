@@ -129,9 +129,6 @@ return {
       open_mapping = [[<c-_>]],
       direction = "float",
     },
-    config = function(_, opts)
-      require("toggleterm").setup(opts)
-    end,
     keys = {
       { "<c-/>", nil, mode = "n", desc = "Terminal (cwd)" },
       { "<c-_>", nil, mode = "n", desc = "which_key_ignore" },
@@ -210,5 +207,9 @@ return {
       manual_mode = true,
       scope_chdir = "tab",
     },
+  },
+  {
+    "h-hg/fcitx.nvim",
+    event = "VeryLazy",
   },
 }

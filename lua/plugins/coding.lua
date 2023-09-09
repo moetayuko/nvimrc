@@ -61,7 +61,7 @@ return {
         desc = "inner subword",
       },
       {
-        "ae",
+        "aL",
         function()
           require("various-textobjs").lineCharacterwise(false)
         end,
@@ -69,7 +69,7 @@ return {
         desc = "current line (with indentation and trailing spaces)",
       },
       {
-        "ie",
+        "iL",
         function()
           require("various-textobjs").lineCharacterwise(true)
         end,

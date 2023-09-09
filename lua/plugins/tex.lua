@@ -1,7 +1,7 @@
 return {
   {
     "lervag/vimtex",
-    config = function()
+    init = function()
       vim.g.vimtex_compiler_latexmk = {
         ["options"] = {
           "-verbose",
