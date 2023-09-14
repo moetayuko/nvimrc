@@ -130,4 +130,13 @@ return {
     dependencies = { "kkharji/sqlite.lua" },
     config = true,
   },
+  {
+    "cappyzawa/trim.nvim",
+    config = true,
+    cmd = {
+      "TrimToggle",
+      "Trim",
+    },
+    event = "BufWritePre",
+  },
 }
