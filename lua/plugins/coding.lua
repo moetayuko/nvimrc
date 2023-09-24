@@ -139,4 +139,12 @@ return {
     },
     event = "BufWritePre",
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function()
+      if jit.os:find("Windows") then
+        require("nvim-treesitter.install").prefer_git = false
+      end
+    end,
+  },
 }

@@ -126,12 +126,12 @@ return {
       "ToggleTermSetName",
     },
     opts = {
-      open_mapping = [[<c-_>]],
+      open_mapping = [[<c-/>]],
       direction = "float",
     },
     keys = {
       { "<c-/>", nil, mode = "n", desc = "Terminal (cwd)" },
-      { "<c-_>", nil, mode = "n", desc = "which_key_ignore" },
+      { "<c-_>", "<c-/>", mode = "n", remap = true, desc = "which_key_ignore" },
     },
   },
   {
