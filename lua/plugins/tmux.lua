@@ -55,6 +55,40 @@ return {
         require("which-key").show('"', { mode = "v", auto = true })
       end)
     end,
+    keys = {
+      {
+        "<A-H>",
+        function()
+          require("tmux").move_left()
+        end,
+        desc = "Go to left window",
+        remap = true,
+      },
+      {
+        "<A-J>",
+        function()
+          require("tmux").move_bottom()
+        end,
+        desc = "Go to lower window",
+        remap = true,
+      },
+      {
+        "<A-K>",
+        function()
+          require("tmux").move_top()
+        end,
+        desc = "Go to upper window",
+        remap = true,
+      },
+      {
+        "<A-L>",
+        function()
+          require("tmux").move_right()
+        end,
+        desc = "Go to right window",
+        remap = true,
+      },
+    },
   },
   {
     "gbprod/yanky.nvim",

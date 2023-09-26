@@ -16,19 +16,10 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
--- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", function()
-  require("tmux").move_left()
-end, { desc = "Go to left window", remap = true })
-map("n", "<C-j>", function()
-  require("tmux").move_bottom()
-end, { desc = "Go to lower window", remap = true })
-map("n", "<C-k>", function()
-  require("tmux").move_top()
-end, { desc = "Go to upper window", remap = true })
-map("n", "<C-l>", function()
-  require("tmux").move_right()
-end, { desc = "Go to right window", remap = true })
+-- Remove default keymaps
+for _, key in ipairs({ "<C-h>", "<C-j>", "<C-k>", "<C-l>" }) do
+  vim.api.nvim_del_keymap("n", key)
+end
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", function()
