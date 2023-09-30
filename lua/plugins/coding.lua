@@ -147,4 +147,19 @@ return {
       end
     end,
   },
+  {
+    "ojroques/nvim-osc52",
+    event = "TextYankPost",
+    config = function(_, opts)
+      local osc52 = require("osc52")
+      osc52.setup(opts)
+      vim.api.nvim_create_autocmd("TextYankPost", {
+        callback = function()
+          if vim.v.event.operator == "y" and (vim.v.event.regname == "+" or vim.v.event.regname == "") then
+            osc52.copy(table.concat(vim.v.event.regcontents, "\n"))
+          end
+        end,
+      })
+    end,
+  },
 }
