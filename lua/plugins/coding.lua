@@ -137,7 +137,7 @@ return {
       "TrimToggle",
       "Trim",
     },
-    event = "BufWritePre",
+    event = "BufReadPost",
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -149,7 +149,8 @@ return {
   },
   {
     "ojroques/nvim-osc52",
-    event = "TextYankPost",
+    event = "BufReadPost",
+    opts = { silent = true },
     config = function(_, opts)
       local osc52 = require("osc52")
       osc52.setup(opts)
