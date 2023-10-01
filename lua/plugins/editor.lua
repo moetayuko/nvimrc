@@ -5,77 +5,11 @@ return {
       "s1n7ax/nvim-window-picker",
       opts = {
         filter_rules = {
-          bo = { filetype = { "NvimTree", "neo-tree", "notify", "noice" } },
+          bo = { filetype = { "NvimTree", "neo-tree", "notify", "noice", "qf" } },
         },
       },
     },
-    opts = {
-      filesystem = {
-        bind_to_cwd = true,
-        commands = {
-          copy_file_name = function(state)
-            local log = require("neo-tree.log")
-            local node = state.tree:get_node()
-            vim.fn.setreg("+", node.name)
-            vim.fn.setreg('"', node.name)
-            log.info("Copied filename " .. node.name .. " to clipboard")
-          end,
-          -- https://github.com/nvim-neo-tree/neo-tree.nvim/pull/1016
-          ---Copies a node relative path to clipboard.
-          ---@param state table The state of the source
-          copy_path = function(state)
-            local log = require("neo-tree.log")
-            local node = state.tree:get_node()
-            if node.type == "message" then
-              return
-            end
-            local pwdpath = state.path
-            local content = node.path
-            local rpath = "." .. string.sub(content, string.len(pwdpath) + 1)
-            vim.fn.setreg("+", rpath)
-            vim.fn.setreg('"', rpath)
-            log.info("copy " .. node.name .. " path to clipboard")
-          end,
-
-          ---Copies a node absolute path to clipboard.
-          ---@param state table The state of the source
-          copy_abspath = function(state)
-            local log = require("neo-tree.log")
-            local node = state.tree:get_node()
-            if node.type == "message" then
-              return
-            end
-            local content = node.path
-            vim.fn.setreg("+", content)
-            vim.fn.setreg('"', content)
-            log.info("copy " .. node.name .. "abs path to clipboard")
-          end,
-        },
-        window = {
-          mappings = {
-            ["Y"] = "copy_file_name",
-            ["S"] = "split_with_window_picker",
-            ["s"] = "vsplit_with_window_picker",
-            ["<cr>"] = "open_with_window_picker",
-            ["w"] = "noop",
-            ["yp"] = "copy_path",
-            ["yP"] = "copy_abspath",
-          },
-        },
-      },
-    },
-    config = function(_, opts)
-      -- NOTE: sync with upstream
-      require("neo-tree").setup(opts)
-      vim.api.nvim_create_autocmd("TermClose", {
-        pattern = "*lazygit",
-        callback = function()
-          if package.loaded["neo-tree.sources.git_status"] then
-            require("neo-tree.sources.git_status").refresh()
-          end
-        end,
-      })
-
+    opts = function(_, opts)
       vim.api.nvim_create_autocmd("FileType", {
         pattern = { "neo-tree" },
         callback = function()
@@ -90,6 +24,61 @@ return {
             end,
           })
         end,
+      })
+      return vim.tbl_deep_extend("force", opts, {
+        filesystem = {
+          bind_to_cwd = true,
+          commands = {
+            copy_file_name = function(state)
+              local log = require("neo-tree.log")
+              local node = state.tree:get_node()
+              vim.fn.setreg("+", node.name)
+              vim.fn.setreg('"', node.name)
+              log.info("Copied filename " .. node.name .. " to clipboard")
+            end,
+            -- https://github.com/nvim-neo-tree/neo-tree.nvim/pull/1016
+            ---Copies a node relative path to clipboard.
+            ---@param state table The state of the source
+            copy_path = function(state)
+              local log = require("neo-tree.log")
+              local node = state.tree:get_node()
+              if node.type == "message" then
+                return
+              end
+              local pwdpath = state.path
+              local content = node.path
+              local rpath = "." .. string.sub(content, string.len(pwdpath) + 1)
+              vim.fn.setreg("+", rpath)
+              vim.fn.setreg('"', rpath)
+              log.info("copy " .. node.name .. " path to clipboard")
+            end,
+
+            ---Copies a node absolute path to clipboard.
+            ---@param state table The state of the source
+            copy_abspath = function(state)
+              local log = require("neo-tree.log")
+              local node = state.tree:get_node()
+              if node.type == "message" then
+                return
+              end
+              local content = node.path
+              vim.fn.setreg("+", content)
+              vim.fn.setreg('"', content)
+              log.info("copy " .. node.name .. "abs path to clipboard")
+            end,
+          },
+          window = {
+            mappings = {
+              ["Y"] = "copy_file_name",
+              ["S"] = "split_with_window_picker",
+              ["s"] = "vsplit_with_window_picker",
+              ["<cr>"] = "open_with_window_picker",
+              ["w"] = "noop",
+              ["yp"] = "copy_path",
+              ["yP"] = "copy_abspath",
+            },
+          },
+        },
       })
     end,
   },

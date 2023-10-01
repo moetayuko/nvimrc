@@ -138,6 +138,9 @@ return {
       "Trim",
     },
     event = "BufReadPost",
+    keys = {
+      { "<leader>ut", "<Cmd>TrimToggle<CR>", desc = "Toggle trim on save" },
+    },
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -157,7 +160,7 @@ return {
       vim.api.nvim_create_autocmd("TextYankPost", {
         callback = function()
           if vim.v.event.operator == "y" and (vim.v.event.regname == "+" or vim.v.event.regname == "") then
-            osc52.copy(table.concat(vim.v.event.regcontents, "\n"))
+            osc52.copy_register(vim.v.event.regname)
           end
         end,
       })
