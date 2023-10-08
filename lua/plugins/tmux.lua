@@ -29,13 +29,13 @@ return {
         { "=p", "<Plug>(YankyPutAfterFilter)", desc = "Put after applying a filter" },
         { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put before applying a filter" },
       }
+      keys = require("lazy.core.handler.keys").resolve(keys)
       for _, key in pairs(keys) do
-        key = require("lazy.core.handler.keys").parse(key)
-        vim.keymap.set(key.mode, key[1], function()
+        vim.keymap.set(key.mode, key.lhs, function()
           if vim.env.TMUX then
             require("tmux.copy").sync_registers()
           end
-          return key[2]
+          return key.rhs
         end, {
           desc = key.desc,
           expr = true,

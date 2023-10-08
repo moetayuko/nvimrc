@@ -156,6 +156,7 @@ return {
   },
   {
     "akinsho/git-conflict.nvim",
+    event = "VeryLazy",
     cmd = {
       "GitConflictChooseOurs",
       "GitConflictChooseTheirs",
@@ -164,14 +165,23 @@ return {
       "GitConflictNextConflict",
       "GitConflictPrevConflict",
       "GitConflictListQf",
+      "GitConflictRefresh",
     },
-    config = true,
     opts = {
       default_mappings = false,
     },
+    config = function(_, opts)
+      require("git-conflict").setup(opts)
+      vim.cmd([[GitConflictRefresh]])
+    end,
     keys = {
       { "[n", "<Plug>(git-conflict-prev-conflict)", desc = "Previous Conflict" },
       { "]n", "<Plug>(git-conflict-next-conflict)", desc = "Next Conflict" },
+      { "<leader>go", "<Plug>(git-conflict-ours)", desc = "Select the current changes" },
+      { "<leader>gt", "<Plug>(git-conflict-theirs)", desc = "Select the incoming changes" },
+      { "<leader>gb", "<Plug>(git-conflict-both)", desc = "Select both changes" },
+      { "<leader>g0", "<Plug>(git-conflict-none)", desc = "Select none of the changes" },
+      { "<leader>gq", "<cmd>GitConflictListQf<cr>", desc = "Get all conflict to quickfix" },
     },
   },
   {
