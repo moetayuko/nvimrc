@@ -198,7 +198,7 @@ return {
   },
   {
     "lambdalisue/suda.vim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = "LazyFile",
   },
   {
     "ahmedkhalf/project.nvim",
@@ -210,5 +210,11 @@ return {
   {
     "h-hg/fcitx.nvim",
     event = "VeryLazy",
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    init = function()
+      vim.g.mkdp_auto_close = 0
+    end,
   },
 }

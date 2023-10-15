@@ -137,22 +137,14 @@ return {
       "TrimToggle",
       "Trim",
     },
-    event = "BufReadPost",
+    event = "LazyFile",
     keys = {
       { "<leader>ut", "<Cmd>TrimToggle<CR>", desc = "Toggle trim on save" },
     },
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function()
-      if jit.os:find("Windows") then
-        require("nvim-treesitter.install").prefer_git = false
-      end
-    end,
-  },
-  {
     "ojroques/nvim-osc52",
-    event = "BufReadPost",
+    event = "LazyFile",
     opts = { silent = true },
     config = function(_, opts)
       local osc52 = require("osc52")

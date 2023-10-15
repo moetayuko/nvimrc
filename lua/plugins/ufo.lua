@@ -45,7 +45,7 @@ return {
         },
       },
     },
-    event = "BufReadPost",
+    event = "LazyFile",
     opts = {
       provider_selector = function(_, filetype, _)
         return ftMap[filetype] or customizeSelector
