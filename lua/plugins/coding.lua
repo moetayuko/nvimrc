@@ -139,7 +139,7 @@ return {
     },
     event = "LazyFile",
     keys = {
-      { "<leader>ut", "<Cmd>TrimToggle<CR>", desc = "Toggle trim on save" },
+      { "<leader>u<space>", "<Cmd>TrimToggle<CR>", desc = "Toggle trim on save" },
     },
   },
   {

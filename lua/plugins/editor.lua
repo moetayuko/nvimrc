@@ -64,7 +64,7 @@ return {
               local content = node.path
               vim.fn.setreg("+", content)
               vim.fn.setreg('"', content)
-              log.info("copy " .. node.name .. "abs path to clipboard")
+              log.info("copy " .. node.name .. " abs path to clipboard")
             end,
           },
           window = {
@@ -203,7 +203,6 @@ return {
   {
     "ahmedkhalf/project.nvim",
     opts = {
-      manual_mode = true,
       scope_chdir = "tab",
     },
   },
