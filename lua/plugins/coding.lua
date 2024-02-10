@@ -96,23 +96,30 @@ return {
     dependencies = {
       {
         "uga-rosa/cmp-dictionary",
-        config = function(_, opts)
-          local dict = require("cmp_dictionary")
-          dict.setup(opts)
-          dict.switcher({ spelllang = {
-            en = "/usr/share/dict/words",
-          } })
-        end,
+        opts = {
+          paths = { "/usr/share/dict/words" },
+          first_case_insensitive = true,
+        },
       },
     },
     opts = function(_, opts)
       local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+      local sources = vim.list_extend(opts.sources, {
         {
           name = "dictionary",
           keyword_length = 2,
         },
-      }))
+      })
+      for _, src in pairs(sources) do
+        if src.name == "buffer" then
+          src.option = {
+            get_bufnrs = function()
+              return vim.api.nvim_list_bufs()
+            end,
+          }
+        end
+      end
+      opts.sources = cmp.config.sources(sources)
     end,
   },
   {
