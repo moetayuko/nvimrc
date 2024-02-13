@@ -97,7 +97,7 @@ return {
       {
         "uga-rosa/cmp-dictionary",
         opts = {
-          paths = { "/usr/share/dict/words" },
+          paths = { vim.fn.stdpath("config") .. "/assets/american-english" },
           first_case_insensitive = true,
         },
       },
