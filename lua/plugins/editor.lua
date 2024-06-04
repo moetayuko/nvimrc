@@ -71,13 +71,6 @@ return {
   },
   {
     "telescope.nvim",
-    dependencies = {
-      "nvim-telescope/telescope-fzf-native.nvim",
-      build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
-      config = function()
-        require("telescope").load_extension("fzf")
-      end,
-    },
     opts = {
       pickers = {
         live_grep = {
@@ -184,8 +177,11 @@ return {
     },
   },
   {
-    "lambdalisue/suda.vim",
+    "lambdalisue/vim-suda",
     event = "LazyFile",
+    init = function()
+      vim.g.suda_smart_edit = 1
+    end,
   },
   {
     "ahmedkhalf/project.nvim",
@@ -206,5 +202,15 @@ return {
   {
     "Darazaki/indent-o-matic",
     event = "LazyFile",
+  },
+  {
+    "willothy/flatten.nvim",
+    opts = {
+      window = {
+        open = "alternate",
+      },
+    },
+    lazy = false,
+    priority = 1001,
   },
 }

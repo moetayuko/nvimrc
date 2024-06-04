@@ -1,6 +1,7 @@
 return {
   {
     "L3MON4D3/LuaSnip",
+    optional = true,
     opts = {
       store_selection_keys = "<Tab>",
     },
@@ -13,30 +14,22 @@ return {
     keys = {
       {
         "w",
-        function()
-          require("spider").motion("w")
-        end,
+        "<cmd>lua require('spider').motion('w')<CR>",
         mode = { "n", "x", "o" },
       },
       {
         "e",
-        function()
-          require("spider").motion("e")
-        end,
+        "<cmd>lua require('spider').motion('e')<CR>",
         mode = { "n", "x", "o" },
       },
       {
         "b",
-        function()
-          require("spider").motion("b")
-        end,
+        "<cmd>lua require('spider').motion('b')<CR>",
         mode = { "n", "x", "o" },
       },
       {
         "ge",
-        function()
-          require("spider").motion("ge")
-        end,
+        "<cmd>lua require('spider').motion('ge')<CR>",
         mode = { "n", "x", "o" },
       },
     },
@@ -88,8 +81,27 @@ return {
   },
   {
     "johmsalas/text-case.nvim",
-    config = true,
-    event = "VeryLazy",
+    event = "LazyFile",
+    dependencies = { "nvim-telescope/telescope.nvim", optional = true },
+    config = function()
+      require("textcase").setup({})
+      if LazyVim.has("telescope.nvim") then
+        LazyVim.on_load("telescope.nvim", function()
+          require("telescope").load_extension("textcase")
+        end)
+      end
+    end,
+    keys = {
+      "ga", -- Default invocation prefix
+      { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+    },
+    cmd = {
+      "Subs",
+      "TextCaseOpenTelescope",
+      "TextCaseOpenTelescopeQuickChange",
+      "TextCaseOpenTelescopeLSPChange",
+      "TextCaseStartReplacingCommand",
+    },
   },
   {
     "hrsh7th/nvim-cmp",
@@ -148,21 +160,5 @@ return {
     keys = {
       { "<leader>u<space>", "<Cmd>TrimToggle<CR>", desc = "Toggle trim on save" },
     },
-  },
-  {
-    "ojroques/nvim-osc52",
-    event = "LazyFile",
-    opts = { silent = true },
-    config = function(_, opts)
-      local osc52 = require("osc52")
-      osc52.setup(opts)
-      vim.api.nvim_create_autocmd("TextYankPost", {
-        callback = function()
-          if vim.v.event.operator == "y" and (vim.v.event.regname == "+" or vim.v.event.regname == "") then
-            osc52.copy_register(vim.v.event.regname)
-          end
-        end,
-      })
-    end,
   },
 }
