@@ -83,27 +83,6 @@ return {
     },
   },
   {
-    "akinsho/toggleterm.nvim",
-    cmd = {
-      "ToggleTerm",
-      "ToggleTermToggleAll",
-      "TermExec",
-      "TermSelect",
-      "ToggleTermSendCurrentLine",
-      "ToggleTermSendVisualLines",
-      "ToggleTermSendVisualSelection",
-      "ToggleTermSetName",
-    },
-    opts = {
-      open_mapping = [[<c-/>]],
-      direction = "float",
-    },
-    keys = {
-      { "<c-/>", nil, mode = "n", desc = "Terminal (cwd)" },
-      { "<c-_>", "<c-/>", mode = "n", remap = true, desc = "which_key_ignore" },
-    },
-  },
-  {
     "tpope/vim-fugitive",
     cmd = {
       "G",
