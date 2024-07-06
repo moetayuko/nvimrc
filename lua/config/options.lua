@@ -10,5 +10,3 @@ if not Util.is_win() then
 else
   vim.g.sqlite_clib_path = vim.fn.stdpath("config") .. "/assets/sqlite3.dll"
 end
-
-vim.g.lazyvim_python_lsp = "basedpyright"

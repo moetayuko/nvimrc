@@ -171,6 +171,7 @@ return {
   {
     "h-hg/fcitx.nvim",
     event = "VeryLazy",
+    vscode = true,
   },
   {
     "iamcco/markdown-preview.nvim",
