@@ -1,12 +1,11 @@
 return {
-  -- add gruvbox
+  -- catppuccin
   {
-    "ellisonleao/gruvbox.nvim",
+    "catppuccin",
     opts = {
-      transparent_mode = true,
+      transparent_background = true,
     },
   },
-
   {
     "rcarriga/nvim-notify",
     opts = {
@@ -14,20 +13,11 @@ return {
     },
   },
 
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      local custom_gruvbox = require("lualine.themes.gruvbox")
-      custom_gruvbox.normal.c.bg = "None"
-      opts.theme = custom_gruvbox
-    end,
-  },
-
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox",
+      colorscheme = "catppuccin",
     },
   },
 }

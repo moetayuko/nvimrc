@@ -27,7 +27,6 @@ return {
       })
       return vim.tbl_deep_extend("force", opts, {
         filesystem = {
-          bind_to_cwd = true,
           window = {
             mappings = {
               ["yn"] = {
