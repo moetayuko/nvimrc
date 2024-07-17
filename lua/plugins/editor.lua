@@ -192,4 +192,15 @@ return {
     lazy = false,
     priority = 1001,
   },
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    cond = not LazyVim.is_win(),
+    dependencies = {
+      "leafo/magick",
+    },
+    opts = {
+      tmux_show_only_in_active_window = true,
+    },
+  },
 }
