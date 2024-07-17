@@ -169,7 +169,7 @@ return {
   },
   {
     "h-hg/fcitx.nvim",
-    event = "VeryLazy",
+    event = "InsertEnter",
     vscode = true,
   },
   {
@@ -180,7 +180,7 @@ return {
   },
   {
     "Darazaki/indent-o-matic",
-    event = "LazyFile",
+    event = "BufReadPre",
   },
   {
     "willothy/flatten.nvim",

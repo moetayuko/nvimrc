@@ -35,47 +35,10 @@ return {
     },
   },
   {
-    "chrisgrieser/nvim-various-textobjs",
-    keys = {
-      {
-        "aS",
-        function()
-          require("various-textobjs").subword(false)
-        end,
-        mode = { "o", "x" },
-        desc = "a subword (with white space)",
-      },
-      {
-        "iS",
-        function()
-          require("various-textobjs").subword(true)
-        end,
-        mode = { "o", "x" },
-        desc = "inner subword",
-      },
-      {
-        "aL",
-        function()
-          require("various-textobjs").lineCharacterwise(false)
-        end,
-        mode = { "o", "x" },
-        desc = "current line (with indentation and trailing spaces)",
-      },
-      {
-        "iL",
-        function()
-          require("various-textobjs").lineCharacterwise(true)
-        end,
-        mode = { "o", "x" },
-        desc = "current line",
-      },
-      {
-        "gG",
-        function()
-          require("various-textobjs").entireBuffer()
-        end,
-        mode = { "o", "x" },
-        desc = "entire buffer as one text object",
+    "echasnovski/mini.ai",
+    opts = {
+      custom_textobjects = {
+        L = { "^%s*()[^\n]*()\n?$" }, -- line
       },
     },
   },

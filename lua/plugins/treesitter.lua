@@ -16,11 +16,6 @@ return {
               ["<,"] = { query = "@parameter.inner", desc = "Swap previous parameter" },
             },
           },
-          move = {
-            enable = true,
-            goto_next_start = { ["]a"] = { query = "@parameter.outer", desc = "Goto next parameter" } },
-            goto_previous_start = { ["[a"] = { query = "@parameter.outer", desc = "Goto previous parameter" } },
-          },
         },
       })
     end,
