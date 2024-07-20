@@ -11,6 +11,7 @@ return {
         enable_default_keybindings = false,
       },
       copy_sync = {
+        enable = true,
         sync_registers_keymap = false,
       },
     },
