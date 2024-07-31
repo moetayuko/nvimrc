@@ -2,7 +2,6 @@ return {
   {
     "aserowy/tmux.nvim",
     event = "VeryLazy",
-    commit = "0f4a7de5246ca052844a878c00a02d8a31e54e1b",
     opts = {
       navigation = {
         enable_default_keybindings = false,
@@ -12,7 +11,8 @@ return {
       },
       copy_sync = {
         enable = true,
-        sync_registers_keymap = false,
+        sync_registers_keymap_put = false,
+        sync_registers_keymap_reg = false,
       },
     },
     config = function(_, opts)
