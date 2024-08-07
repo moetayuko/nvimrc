@@ -156,7 +156,8 @@ return {
   },
   {
     "lambdalisue/vim-suda",
-    lazy = false,
+    event = "LazyFile",
+    lazy = vim.fn.argc(-1) == 0, -- load suda early when opening a file from the cmdline
     init = function()
       vim.g.suda_smart_edit = 1
     end,
@@ -202,5 +203,14 @@ return {
     opts = {
       tmux_show_only_in_active_window = true,
     },
+  },
+  {
+    "andymass/vim-matchup",
+    event = "BufReadPost",
+    config = function()
+      vim.g.matchup_matchparen_deferred = 1
+      vim.g.matchup_matchparen_offscreen = { method = nil }
+      vim.g.matchup_override_vimtex = 1
+    end,
   },
 }

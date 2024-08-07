@@ -17,6 +17,9 @@ return {
             },
           },
         },
+        matchup = {
+          enable = true,
+        },
       })
     end,
   },
