@@ -196,7 +196,7 @@ return {
   {
     "3rd/image.nvim",
     event = "VeryLazy",
-    cond = not LazyVim.is_win(),
+    cond = not (LazyVim.is_win() or vim.g.vscode),
     dependencies = {
       "leafo/magick",
     },
