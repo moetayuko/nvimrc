@@ -45,30 +45,22 @@ return {
   {
     "johmsalas/text-case.nvim",
     event = "LazyFile",
-    dependencies = { "nvim-telescope/telescope.nvim", optional = true },
     config = function()
       require("textcase").setup({})
-      if LazyVim.has("telescope.nvim") then
-        LazyVim.on_load("telescope.nvim", function()
-          require("telescope").load_extension("textcase")
-        end)
-      end
     end,
     keys = {
       "ga", -- Default invocation prefix
-      { "ga.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
     },
     cmd = {
       "Subs",
-      "TextCaseOpenTelescope",
-      "TextCaseOpenTelescopeQuickChange",
-      "TextCaseOpenTelescopeLSPChange",
       "TextCaseStartReplacingCommand",
     },
   },
   {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
+    optional = true,
     dependencies = {
+      { "saghen/blink.compat" },
       {
         "uga-rosa/cmp-dictionary",
         opts = {
@@ -77,25 +69,18 @@ return {
         },
       },
     },
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      local sources = vim.list_extend(opts.sources, {
-        {
-          name = "dictionary",
-          keyword_length = 2,
+    opts = {
+      sources = {
+        compat = {
+          "dictionary",
         },
-      })
-      for _, src in pairs(sources) do
-        if src.name == "buffer" then
-          src.option = {
-            get_bufnrs = function()
-              return vim.api.nvim_list_bufs()
-            end,
-          }
-        end
-      end
-      opts.sources = cmp.config.sources(sources)
-    end,
+        providers = {
+          dictionary = {
+            kind = "String",
+          },
+        },
+      },
+    },
   },
   {
     "JuanZoran/Trans.nvim",

@@ -21,6 +21,7 @@ return {
       vim.g.vimtex_view_method = "zathura_simple"
       vim.g.vimtex_quickfix_ignore_filters = ignored
       vim.g.vimtex_matchparen_enabled = 0
+      vim.g.vimtex_quickfix_open_on_warning = 0
 
       -- disable features provided by LaTeX Workshop
       if vim.g.vscode then

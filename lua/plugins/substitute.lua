@@ -10,14 +10,14 @@ return {
     keys = {
       -- Substitute operator --
       {
-        "<leader>a",
+        "<leader>z",
         function()
           require("substitute").operator()
         end,
         desc = "Substitute text object",
       },
       {
-        "<leader>a",
+        "<leader>z",
         function()
           require("substitute").visual()
         end,

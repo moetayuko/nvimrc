@@ -84,19 +84,6 @@ return {
     end,
   },
   {
-    "telescope.nvim",
-    opts = {
-      pickers = {
-        live_grep = {
-          additional_args = { "--hidden" },
-        },
-        grep_string = {
-          additional_args = { "--hidden" },
-        },
-      },
-    },
-  },
-  {
     "tpope/vim-fugitive",
     cmd = {
       "G",
