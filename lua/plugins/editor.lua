@@ -77,6 +77,18 @@ return {
               ["s"] = "vsplit_with_window_picker",
               ["<cr>"] = "open_with_window_picker",
               ["w"] = "noop",
+              ["."] = {
+                function(state)
+                  local current_node = state.tree:get_node() -- this is the current node
+                  local path = current_node:get_id() -- this gives you the path
+
+                  require("neo-tree.sources.filesystem.commands").set_root(state) -- call the default set_root
+
+                  -- do whatever you want to do here
+                  vim.cmd("tcd " .. path)
+                end,
+                desc = "set_root",
+              },
             },
           },
         },
