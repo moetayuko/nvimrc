@@ -20,6 +20,7 @@ return {
         matchup = {
           enable = true,
         },
+        ensure_installed = { "bp" },
       })
     end,
   },
