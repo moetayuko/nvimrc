@@ -183,8 +183,9 @@ return {
     },
   },
   {
-    "h-hg/fcitx.nvim",
-    event = "InsertEnter",
+    "Freed-Wu/ime.nvim",
+    cond = not LazyVim.is_win(),
+    event = { "InsertEnter", "CmdlineEnter" },
     vscode = true,
   },
   {

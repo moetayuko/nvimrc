@@ -60,26 +60,28 @@ return {
     "saghen/blink.cmp",
     optional = true,
     dependencies = {
-      { "saghen/blink.compat" },
       {
-        "uga-rosa/cmp-dictionary",
-        opts = {
-          paths = { vim.fn.stdpath("config") .. "/assets/american-english" },
-          first_case_insensitive = true,
-        },
+        "Kaiser-Yang/blink-cmp-dictionary",
+        dependencies = { "nvim-lua/plenary.nvim" },
       },
     },
     opts = {
       sources = {
-        compat = {
-          "dictionary",
-        },
+        default = { "dictionary" },
         providers = {
           dictionary = {
-            kind = "String",
+            module = "blink-cmp-dictionary",
+            name = "Dict",
+            min_keyword_length = 3,
+            max_items = 8,
+            score_offset = -5,
+            opts = {
+              dictionary_files = { vim.fn.stdpath("config") .. "/assets/american-english" },
+            },
           },
         },
       },
+      fuzzy = { implementation = "lua" },
     },
   },
   {
