@@ -4,6 +4,9 @@ return {
     "catppuccin",
     opts = {
       transparent_background = true,
+      float = {
+        transparent = true,
+      },
     },
   },
   -- Configure LazyVim to load gruvbox
