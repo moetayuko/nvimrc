@@ -35,7 +35,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.ai",
+    "mini.ai",
     opts = {
       custom_textobjects = {
         L = { "^%s*()[^\n]*()\n?$" }, -- line
@@ -112,7 +112,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.align",
+    "mini.align",
     opts = {},
     keys = {
       { "ga", mode = { "n", "v" }, desc = "Start alignment" },
