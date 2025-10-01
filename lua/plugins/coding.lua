@@ -111,12 +111,4 @@ return {
       { "<leader>u<space>", "<Cmd>TrimToggle<CR>", desc = "Toggle trim on save" },
     },
   },
-  {
-    "mini.align",
-    opts = {},
-    keys = {
-      { "ga", mode = { "n", "v" }, desc = "Start alignment" },
-      { "gA", mode = { "n", "v" }, desc = "Start alignment with preview" },
-    },
-  },
 }
