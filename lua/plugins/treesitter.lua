@@ -20,7 +20,7 @@ return {
         matchup = {
           enable = true,
         },
-        ensure_installed = { "bp" },
+        ensure_installed = { "kconfig", "smali" },
       })
     end,
   },
