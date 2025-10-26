@@ -34,11 +34,13 @@ return {
         -- Neovim hasn't added foldingRange to default capabilities, users must add it manually
         "neovim/nvim-lspconfig",
         opts = {
-          capabilities = {
-            textDocument = {
-              foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
+          ["*"] = {
+            capabilities = {
+              textDocument = {
+                foldingRange = {
+                  dynamicRegistration = false,
+                  lineFoldingOnly = true,
+                },
               },
             },
           },
