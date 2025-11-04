@@ -12,3 +12,7 @@ else
 end
 
 vim.g.root_spec = { { ".git", "lua" }, "cwd" }
+
+if Util.is_win() then
+  LazyVim.terminal.setup("pwsh")
+end
