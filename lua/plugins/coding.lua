@@ -1,59 +1,10 @@
 return {
   {
-    "L3MON4D3/LuaSnip",
-    optional = true,
-    opts = {
-      store_selection_keys = "<Tab>",
-    },
-    keys = {
-      { "<tab>", nil, mode = "v" },
-    },
-  },
-  {
-    "chrisgrieser/nvim-spider",
-    keys = {
-      {
-        "w",
-        "<cmd>lua require('spider').motion('w')<CR>",
-        mode = { "n", "x", "o" },
-      },
-      {
-        "e",
-        "<cmd>lua require('spider').motion('e')<CR>",
-        mode = { "n", "x", "o" },
-      },
-      {
-        "b",
-        "<cmd>lua require('spider').motion('b')<CR>",
-        mode = { "n", "x", "o" },
-      },
-      {
-        "ge",
-        "<cmd>lua require('spider').motion('ge')<CR>",
-        mode = { "n", "x", "o" },
-      },
-    },
-  },
-  {
     "mini.ai",
     opts = {
       custom_textobjects = {
         L = { "^%s*()[^\n]*()\n?$" }, -- line
       },
-    },
-  },
-  {
-    "johmsalas/text-case.nvim",
-    event = "LazyFile",
-    opts = {
-      prefix = "gz",
-    },
-    keys = {
-      "gz", -- Default invocation prefix
-    },
-    cmd = {
-      "Subs",
-      "TextCaseStartReplacingCommand",
     },
   },
   {
@@ -97,11 +48,11 @@ return {
       { "mi", "<Cmd>TranslateInput<CR>", desc = " Translate From Input" },
     },
     dependencies = { "kkharji/sqlite.lua" },
-    config = true,
+    opts = {},
   },
   {
     "cappyzawa/trim.nvim",
-    config = true,
+    opts = {},
     cmd = {
       "TrimToggle",
       "Trim",
