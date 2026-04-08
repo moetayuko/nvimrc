@@ -141,7 +141,7 @@ return {
   },
   {
     "rimeinn/ime.nvim",
-    cond = not (LazyVim.is_win() or vim.env.SSH_CONNECTION),
+    cond = not (LazyVim.is_win() or vim.env.SSH_CONNECTION or vim.g.vscode),
     event = { "InsertEnter", "CmdlineEnter" },
     vscode = true,
   },
@@ -153,7 +153,7 @@ return {
   {
     "3rd/image.nvim",
     event = "VeryLazy",
-    cond = not LazyVim.is_win(),
+    cond = not (LazyVim.is_win() or vim.g.vscode),
     dependencies = {
       "leafo/magick",
     },
