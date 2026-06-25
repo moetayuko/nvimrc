@@ -10,21 +10,6 @@ return {
       },
     },
     opts = function(_, opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = { "neo-tree" },
-        callback = function()
-          local buf = vim.api.nvim_get_current_buf()
-          vim.api.nvim_create_autocmd("BufEnter", {
-            buffer = buf,
-            callback = function()
-              if package.loaded["ufo"] then
-                require("ufo").detach()
-                return true
-              end
-            end,
-          })
-        end,
-      })
       return vim.tbl_deep_extend("force", opts, {
         filesystem = {
           window = {
